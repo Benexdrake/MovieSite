@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="js/index.js" defer type="module"></script>
+    <title>Movie Site</title>
+</head>
+<body>
+    <div id="left">
+        <h4>GENRES</h4>
+        <div id="genres">
+            <li class="genre_list" style="background-color: var(--color3); color: var(--color4); border-radius: 4px 4px 0 0;">
+                <p>All</p>
+                <p></p>
+            </li>
+            
+        </div>
+        <h4>RATING</h4>
+        <div class="rating">
+            <input type="radio" name="any_name" value="5" id="sel-rating-5"><label for="sel-rating-5">5</label>
+            <input type="radio" name="any_name" value="4" id="sel-rating-4" checked><label for="sel-rating-4">4</label>
+            <input type="radio" name="any_name" value="3" id="sel-rating-3"><label for="sel-rating-3">3</label>
+            <input type="radio" name="any_name" value="2" id="sel-rating-2"><label for="sel-rating-2">2</label>
+            <input type="radio" name="any_name" value="1" id="sel-rating-1"><label for="sel-rating-1">1</label>
+        </div>
+        <h4>PUBLISHER</h4>
+        <div id="publisher">
+            <select name="" id="publisher_list">
+                <option class="publisher_list_item" value="">Default</option>
+            </select>
+        </div>
+    </div>
+    <div id="right">
+        <div id="input">
+            <input type="text" id="input_text" placeholder="Search here for Animes">
+        </div>
+        <div id="grid">
+
+        </div>
+        <div id="paginator">
+
+        </div>
+    </div>
+</body>
+</html>
