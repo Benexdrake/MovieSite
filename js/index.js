@@ -1,4 +1,4 @@
-import { getAnimes,getAnimeInfos,getAnimesByTitle } from "./anime_service.js";
+import { getAnimeInfos} from "./anime_service.js";
 import { showAllAnimes, showAnimesByTitle } from "./anime.js";
 import { task } from "./libs/helper.js";
 
