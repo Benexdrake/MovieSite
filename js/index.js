@@ -1,5 +1,5 @@
 import { getAnimeInfos} from "./anime_service.js";
-import { showAllAnimes, showAnimesByTitle } from "./anime.js";
+import { showAllAnimes, showAnimesByTitle, showAnimesByGenre, showAnimesByPublisher, showAnimesByRating } from "./anime.js";
 import { task } from "./libs/helper.js";
 
 
@@ -25,15 +25,15 @@ let createGenres = async (genres) =>
         await showAllAnimes()
     })
     
-    await task(() => {
+    await task(async() => {
         for(let genre of genres)
         {
             let genre_list = document.createElement('li');
             genre_list.className = 'genre_list';
             genre_list.innerHTML = `<p>${genre.tag}</p><p>${genre.count}</p>`
             
-            genre_list.addEventListener('click', () => {
-                console.log(genre.tag)
+            genre_list.addEventListener('click', async () => {
+                await showAnimesByGenre(genre.tag)
             })
             
             g.appendChild(genre_list);
