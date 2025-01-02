@@ -1,5 +1,7 @@
 import { getAnimes,getAnimeInfos,getAnimesByTitle } from "./anime_service.js";
-import { cardBlock } from "./components/card.js";
+import { showAllAnimes, showAnimesByTitle } from "./anime.js";
+import { task } from "./libs/helper.js";
+
 
 // let animesByTitle = await getAnimesByTitle('dragon');
 
@@ -10,7 +12,7 @@ let getInformation = async () =>
     createPublishers(infos.publishers)
 }
 
-let createGenres = (genres) =>
+let createGenres = async (genres) =>
 {
     let g = document.getElementById('genres');
 
@@ -20,23 +22,23 @@ let createGenres = (genres) =>
         return;
 
     all_genre.addEventListener('click', async () => {
-        let animes = await getAnimes();
-        console.log(animes.length)
+        await showAllAnimes()
     })
-
     
-    for(let genre of genres)
-    {
-        let genre_list = document.createElement('li');
-        genre_list.className = 'genre_list';
-        genre_list.innerHTML = `<p>${genre.tag}</p><p>${genre.count}</p>`
-        
-        genre_list.addEventListener('click', () => {
-            console.log(genre.tag)
-        })
-        
-        g.appendChild(genre_list);
-    }
+    await task(() => {
+        for(let genre of genres)
+        {
+            let genre_list = document.createElement('li');
+            genre_list.className = 'genre_list';
+            genre_list.innerHTML = `<p>${genre.tag}</p><p>${genre.count}</p>`
+            
+            genre_list.addEventListener('click', () => {
+                console.log(genre.tag)
+            })
+            
+            g.appendChild(genre_list);
+        }
+    })
 }
 
 let createPublishers = (publishers) =>
@@ -51,27 +53,25 @@ let createPublishers = (publishers) =>
         publisher_list_item.innerText = p;
 
         publisher_list_item.addEventListener('click', () => {
-            console.log(publisher_list_item.value);
+            // console.log(publisher_list_item.value);
         })
 
         pl.appendChild(publisher_list_item);
     }
 }
 
-let showAllAnimes = async () => 
+let animeSearchInput = async () =>
 {
-    let grid = document.getElementById('grid')
-    if(!grid) return;
+    let input = document.getElementById('input_text');
+    
+    if(!input) return;
 
-
-    let animes = await getAnimes();
-
-    for(let anime of animes.slice(0,27))
-    {
-        let card = await cardBlock(anime);
-        grid.appendChild(card)
-    }
+    input.addEventListener('input', async () => {
+        console.log(input.value)
+        await showAnimesByTitle(input.value)
+    })
 }
 
+animeSearchInput();
 showAllAnimes();
 getInformation();
