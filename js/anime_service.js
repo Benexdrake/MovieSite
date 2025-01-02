@@ -12,10 +12,20 @@ export let getAnimeInfos = async () =>
     return await fetch(url+'?info=true', options).then(x => {return x.json()})
 }
 
-// export let getAnimesByRating = async () =>
-// {
-//     return await fetch(url+'', options).then(x => {return x.json()})
-// }
+export let getAnimesByRating = async (rating) =>
+{
+    return await fetch(url+'?rating='+rating, options).then(x => {return x.json()})
+}
+
+export let getAnimesByPublisher = async (publisher) =>
+{
+    return await fetch(url+'?publisher='+publisher, options).then(x => {return x.json()})
+}
+
+export let getAnimesByGenre = async (genre) =>
+{
+    return await fetch(url+'?genre='+genre, options).then(x => {return x.json()})
+}
 
 export let getAnimesByTitle = async (title) =>
 {
